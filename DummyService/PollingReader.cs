@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading;
 
 namespace DummyService
@@ -10,6 +12,7 @@ namespace DummyService
 		public PollingReader( EventLog eventLog )
 		{
 			_eventLog = eventLog;
+			_ints = new List<int>();
 		}
 
 		public bool IsRunning { get; private set; }
@@ -38,13 +41,9 @@ namespace DummyService
 
 			try
 			{
-				while ( true )
+				while (true)
 				{
-					String logFile = @"E:\Program Files\DummyService\DummyFile.txt";
-					Thread.Sleep( 10000 );
-					TextReader reader = new StreamReader( logFile );
-					_eventLog.WriteEntry( reader.ReadToEnd() );
-					reader.Close();
+					_ints.Add((new Random().Next()));
 				}
 			}
 			catch ( IOException e )
@@ -60,5 +59,6 @@ namespace DummyService
 
 		private EventLog _eventLog;
 		private Thread _pollingReader;
+		private List<int> _ints;
 	}
 }
