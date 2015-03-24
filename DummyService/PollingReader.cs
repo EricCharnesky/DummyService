@@ -40,7 +40,7 @@ namespace DummyService
 			{
 				while ( true )
 				{
-					String logFile = @"E:\Program Files\DummyService\DummyFile.txt";
+					String logFile = @"C:\Program Files\DummyService\DummyFile.txt";
 					Thread.Sleep( 10000 );
 					TextReader reader = new StreamReader( logFile );
 					_eventLog.WriteEntry( reader.ReadToEnd() );
